@@ -1,0 +1,5 @@
+{
+  "allow_change": "*",
+  "tests": "image_processor",
+  "test_script": "test_script/test_image_processor.py"
+}
