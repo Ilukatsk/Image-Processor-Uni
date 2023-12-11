@@ -1,5 +1,27 @@
 #include "image_class.h"
 
+namespace {
+const size_t WIDTH_1 = 4;
+const size_t WIDTH_2 = 5;
+const size_t WIDTH_3 = 6;
+const size_t WIDTH_4 = 7;
+const size_t HEIGHT_1 = 8;
+const size_t HEIGHT_2 = 9;
+const size_t HEIGHT_3 = 10;
+const size_t HEIGHT_4 = 11;
+const char BIT_SHIFT = 8;
+const char TOT_HEADER_SIZE = 54;
+const uint16_t COLOR_BRIGHTNESS = 255;
+const size_t SIZE_1 = 2;
+const size_t SIZE_2 = 3;
+const size_t SIZE_3 = 4;
+const size_t SIZE_4 = 5;
+const size_t SIZE_RAW_1 = 20;
+const size_t SIZE_RAW_2 = 21;
+const size_t SIZE_RAW_3 = 22;
+const size_t SIZE_RAW_4 = 23;
+}  // namespace
+
 Image::Image(const std::string path) {
     std::ifstream image;
     image.open(path, std::ios::in | std::ios::binary);
@@ -109,6 +131,3 @@ uint32_t Image::GetWidth() const {
 std::vector<std::vector<Pixel>> Image::GetMatrix() const {
     return image_matrix_;
 }
-// todo: check that file is actually bmp(probably just check last 4 characters of the path and compare them with .bmp)
-// todo: check that file is 24-bit(infoheader[12] + infoheader[13] << 8 should be equal to 24)
-// for filters I'll probably make them fuctions that accept class image and return class image

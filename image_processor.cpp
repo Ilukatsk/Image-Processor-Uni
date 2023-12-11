@@ -1,9 +1,19 @@
-#include "Filters/Crop/crop_filter.h"
-#include "Filters/GrayShades/gray_shades.h"
-#include "Filters/Negative/negative.h"
-#include "Filters/Sharp/sharp.h"
-#include "Filters/EdgeDetect/edge_detection.h"
-#include "Filters/Floyd_Steinberg/dithering.h"
+#include "filters/crop/crop_filter.h"
+#include "filters/gray_shades/gray_shades.h"
+#include "filters/negative/negative.h"
+#include "filters/sharp/sharp.h"
+#include "filters/edge_detect/edge_detection.h"
+#include "filters/floyd_steinberg/dithering.h"
+
+namespace {
+const char POW_1 = 2;
+const char POW_2 = 4;
+const char POW_3 = 8;
+const char POW_4 = 16;
+const char POW_5 = 32;
+const char POW_6 = 64;
+const int POW_7 = 128;
+}  // namespace
 
 int main(int argc, char** argv) {
     if (argc == 1) {
@@ -17,7 +27,7 @@ int main(int argc, char** argv) {
         return 0;
     }
     std::string input_loc = static_cast<std::string>(argv[1]);
-    std::string output_loc = static_cast<std::string>(argv[1]);
+    std::string output_loc = static_cast<std::string>(argv[2]);
     if (input_loc.substr(input_loc.size() - 4, 4) != ".bmp") {
         std::cout << "No input file location given." << std::endl;
         return -1;
@@ -26,7 +36,7 @@ int main(int argc, char** argv) {
         std::cout << "No output file location given." << std::endl;
         return -1;
     }
-    Image image(argv[1]);
+    Image image(input_loc);
     size_t i = 3;
     size_t max_size = static_cast<size_t>(argc);
     while (i < max_size) {
@@ -69,11 +79,11 @@ int main(int argc, char** argv) {
                     bool height_incor = false;
                     if (std::stoi(width) <= 0) {
                         width_incor = true;
-                        std::cout << "Width is less than zero." << std::endl;
+                        std::cout << "Width is zero or less." << std::endl;
                     }
                     if (std::stoi(height) <= 0) {
                         height_incor = true;
-                        std::cout << "Height is less than zero." << std::endl;
+                        std::cout << "Height is zero or less." << std::endl;
                     }
                     if (width_incor || height_incor) {
                         return -1;
@@ -111,6 +121,6 @@ int main(int argc, char** argv) {
             return -1;
         }
     }
-    image.Export(argv[2]);
+    image.Export(output_loc);
     return 0;
 }

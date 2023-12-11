@@ -1,7 +1,6 @@
 add_executable(
-    image_processor
-    image_processor.cpp
-        image_class.cpp image_class.h Filters/Crop/crop_filter.cpp Filters/Crop/crop_filter.h
-        Filters/GrayShades/gray_shades.cpp Filters/GrayShades/gray_shades.h Filters/Negative/negative.cpp
-        Filters/Negative/negative.h Filters/Sharp/sharp.cpp Filters/Sharp/sharp.h Filters/EdgeDetect/edge_detection.cpp
-        Filters/EdgeDetect/edge_detection.h Filters/Floyd_Steinberg/dithering.cpp Filters/Floyd_Steinberg/dithering.h)
+        image_processor
+        image_processor.cpp
+        image_class.cpp
+        filters/edge_detect/edge_detection.cpp filters/crop/crop_filter.cpp filters/floyd_steinberg/dithering.cpp
+        filters/gray_shades/gray_shades.cpp filters/negative/negative.cpp filters/sharp/sharp.cpp filters/matrix_apply.cpp filters/matrix_apply.h)
